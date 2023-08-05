@@ -1,0 +1,177 @@
+
+
+
+=> it is to manage the manual way of docker with the automation process
+
+
+
+Installing Docker-compose oCommand to download docker-compose:
+
+            curl -SL https://github.com/docker/compose/releases/download/v2.12.0/docker-compose-linux-x86_64 -o /usr/local/bin/docker-compose
+
+Making binary file executable Command
+
+            chmod +x /usr/local/bin/docker-compose
+
+
+
+Docker-compose Installation
+
+        https://docs.docker.com/compose/install/other/
+
+
+Compose and Docker compatibility matrix
+
+        https://docs.docker.com/compose/compose-file/compose-file-v3/
+
+we use script in writing the code for docker 
+
+mycode.yml
+
+version: "3.8"
+services:
+  c1:
+    container-name: "os1"
+    image: "ubuntu:14.04"
+    command: "date"
+  c2:
+    container-name: "os2"
+    image: "centos"
+    command: "cal"
+
+
+docker compose -f mycode.yml   up 
+docker compose up -d
+docker compose logs c1
+docker compose exec c1 date
+docker compose stop
+docker compose rm
+
+
+
+
+
+docker-compose.yml
+
+
+version: "3.8"
+services: 
+  db:
+    image: "mysql:latest"
+    container-name: "mysql"
+    networks: newnw
+    environment:
+    - MYSQL_ROOT_PASSWORD=redhat
+    - MYSQL_PASSWORD=password
+    - MYSQL_DB_NAME=mysql
+    - MYSQL_USER=kanna
+    volumes:
+    - /data:/var/lib/mysql
+
+  wp:
+    depends_on:
+    - db
+    image: "wordpress:latest"
+    container-name: "wordpress"
+    networks: newnw
+    ports:
+    - 8080:80
+    environment:
+    - WORDPRESS_DB_PASSWORD=redhat
+    - WORDPRESS_DB_USER=kanna
+    - WORDPRESS_DB_HOST=kannadb1
+    - WORDPRESS_DB_NAME=blogdb
+
+    networks:
+    - lwnet
+      drivers: bridge
+      subnet: 10.0.1.0/16
+
+
+
+docker cp  <file>  <container>:<path>
+
+docker cp  <container>:<path>    <path of local OS>
+
+
+add command   /bin/bash  -c  httpd    ----->  to keep the container running
+
+
+we can stop a container using  their 4 charecteristics of its unique ID  
+
+we can overwrite the CMD  command while launching the containers
+
+we can't  overwrite the ENTRYPOINT  while launching containers
+
+
+=> so we used the fixed CMD in ENTRYPOINT  [" " ]   and provide the argument in CMD  in following to it  and we can overwrite CMD while launching if needed
+
+
+
+pull any image  from  dockerhub  and run  
+
+      docker history  < image name >  --->  to get how it builts
+
+MAINTAINER   is to provide who is managing the image in the history
+
+
+tomcat   
+
+default path     /usr/local/tomcat/webapp/ROOT         llr to  /var/www/html  
+
+when we expose   a pod  we can  connect through   lo  interface
+
+
+version: "3.8"
+services:
+  webapp:
+    build: .
+    ports:
+    - 8080:80
+
+
+=> in the above its not needed provide the image name it default takes the image that will built during the process from the Dockerfile in the package
+
+
+ADD    vs  COPY     
+
+=>  using  ADD  we can copy the images even using URL  but where in we can only copy the files from the current directory using  COPY   and COPY is much faster compared to ADD.
+
+=> when we uss EXPOSE then we should pass -p  while launching  the container and we can use ENV
+
+
+uname -r   => kernel version  ( container )
+processes inside processes
+
+ex:  OS  -> bash   -> httpd , apache  , wordpress
+
+=> when we launch  a container  it takes all the resources  or files  from the image OS  from  the root folder  in its  PID  . we can verify  from listing files from both  root folders.
+
+=> since  hte container  is provided all  the resources or folder access   from the image  we cannot  delete  image  when  it is  used  by any  running containers
+
+=> when we laumch multiple containers then the same resources are allocated to all other containers and to specify the amount to particular container for not using the same resource by other container
+      cGroups manages this isolation  and also Namespace.
+
+=> kernel version 2.6  and above supports  the nested process
+
+
+lsns   -->  to  list the namespace  in   a baseOS
+
+as soon as the container stops it removes  all namespaces and this namespaces are shared from the image
+
+
+nsenter  -t   <PID>   -n (  for network namespace )
+
+      >  ifconfig      --->  here we can  see  different  networks  IP's and all which  states ns changed which is  used by  container
+
+
+man  unshare     --->   manual to refer in creating custom namespace
+
+--->   namespace  doesnot  work  for physical  resources   like CPU and RAM
+
+every container  uses  same CPU  and   RAM  of  BaseOS  but  to   provide spec  RAM  and CPU  to the container we  use  cGroups
+
+
+docker run  -it  --name  os1   --memory 40m   centos:7
+
+docker uses  runc  behind  as runtime  for launching  all resources 
