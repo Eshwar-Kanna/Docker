@@ -1,195 +1,193 @@
-Let’s Rock With Docker Together
+𝓘𝓷𝓽𝓻𝓸𝓭𝓾𝓬𝓽𝓲𝓸𝓷
 
 
-Introduction
+➼ Docker is a tool introduced and developed by Kamel Faunadi, Solomen Hykes and Sebastian Pahl and Released on March 20, 2013.
+
+➼ Mostly there are four types of Platforms for installing and running software
+
+            ➤  Bare Metal
+            ➤  Virtualization
+            ➤  Cloud Computing
+            ➤  Containerization
+
+➼ Docker is an Open Source Containerization Platform. It enables developers to package applications into containers
+➼ Docker is a set of the platform as a service (PaaS) products that use OS -Level Virtualization to deliver software in package called Containers . The software that hosts the container is called Docker Engine.
+➼ Following Check Posts to be crossed for Entering the era of docker
 
 
-Docker is a tool introduced and developed by Kamel Faunadi, Solomen Hykes and Sebastian Pahl and Released on March 20, 2013.
+𝐃𝐨𝐜𝐤𝐞𝐫 𝐒𝐞𝐭𝐮𝐩
+
+𝘴𝘶𝘥𝘰 𝘺𝘶𝘮 𝘪𝘯𝘴𝘵𝘢𝘭𝘭 -𝘺 𝘺𝘶𝘮-𝘶𝘵𝘪𝘭𝘴
+
+𝘴𝘶𝘥𝘰 𝘺𝘶𝘮-𝘤𝘰𝘯𝘧𝘪𝘨-𝘮𝘢𝘯𝘢𝘨𝘦𝘳 --𝘢𝘥𝘥-𝘳𝘦𝘱𝘰  𝘩𝘵𝘵𝘱𝘴://𝘥𝘰𝘸𝘯𝘭𝘰𝘢𝘥.𝘥𝘰𝘤𝘬𝘦𝘳.𝘤𝘰𝘮/𝘭𝘪𝘯𝘶𝘹/𝘳𝘩𝘦𝘭/𝘥𝘰𝘤𝘬𝘦𝘳-𝘤𝘦.𝘳𝘦𝘱𝘰
+
+𝘺𝘶𝘮 𝘪𝘯𝘴𝘵𝘢𝘭𝘭 𝘥𝘰𝘤𝘬𝘦𝘳- 𝘤𝘦
 
 
+𝐬𝐲𝐬𝐭𝐞𝐦𝐜𝐭𝐥 𝐬𝐭𝐚𝐫𝐭 𝐝𝐨𝐜𝐤𝐞𝐫      ----->     this will start the docker service temporarily and terminates when the OS is shutdown
 
-Mostly there are four types of Platforms for installing and running software
+𝐬𝐲𝐬𝐭𝐞𝐦𝐜𝐭𝐥 𝐬𝐭𝐚𝐭𝐮𝐬 𝐝𝐨𝐜𝐤𝐞𝐫     ----->     to check the status of the docker (Active/Inactive)
 
-Bare Metal
-Virtualization
-Cloud Computing
-Containerization
+𝐬𝐲𝐬𝐭𝐞𝐦𝐜𝐭𝐥 𝐞𝐧𝐚𝐛𝐥𝐞 𝐝𝐨𝐜𝐤𝐞𝐫     ----->     To make the Docker service permanent which auto start the Service when you start the OS
 
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐢𝐧𝐟𝐨          ------>     For the docker software info and also confirm the existence of docker
 
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐩𝐬       ------->    gives the containers info created in the docker
 
-Docker is an Open Source Containerization Platform. It enables developers to package applications into containers
-Docker is a set of the platform as a service (PaaS) products that use OS -Level Virtualization to deliver software in package called Containers . The software that hosts the container is called Docker Engine.
-Following Check Posts to be crossed for Entering the era of docker
-
-
-Docker Setup
-
-sudo yum install -y yum-utils
-
-sudo yum-config-manager \
---add-repo \
-https://download.docker.com/linux/rhel/docker-ce.repo
-
-yum install docker- ce
-
-systemctl start docker      ----->     this will start the docker service temporarily and terminates when the OS is shutdown
-
-systemctl status docker     ----->     to check the status of the docker (Active/Inactive)
-
-systemctl enable docker     ----->     To make the Docker service permanent which auto start the Service when you start the OS
-
-docker info           ------>     For the docker software info and also confirm the existence of docker
-
-docker ps       ------->    gives the containers info created in the docker
-
-docker pull <image>       ------->      To download the image from the internet
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐩𝐮𝐥𝐥 <𝐢𝐦𝐚𝐠𝐞>       ------->      To download the image from the internet
 
 ex: docker pull ubuntu:14.04 , docker pull centos
 
-docker images      ------->     this gives you the images downloaded in the container
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐢𝐦𝐚𝐠𝐞𝐬      ------->     this gives you the images downloaded in the container
 
-docker run -it — name mycentos centos     ------>  this command will start the container with a new shell or a bash shell “— name” option is used to provide the name for the container which helps in specifying from multiple containers
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐫𝐮𝐧 -𝐢𝐭 — 𝐧𝐚𝐦𝐞 𝐦𝐲𝐜𝐞𝐧𝐭𝐨𝐬 𝐜𝐞𝐧𝐭𝐨𝐬     ------>  this command will start the container with a new shell or a bash shell “— name” option is used to provide the name for the container which helps in specifying from multiple containers
 
 In the container “centos”  above launched, run the command “ifconfig” if fail then run a command
 
-yum whatprovides ifconfig     ----->   this command displays the software that provides the ifconfig and installs in the container, “yum whatprovides <package>” helps in knowing the software that provides the required package or module.
+𝐲𝐮𝐦 𝐰𝐡𝐚𝐭𝐩𝐫𝐨𝐯𝐢𝐝𝐞𝐬 𝐢𝐟𝐜𝐨𝐧𝐟𝐢𝐠     ----->   this command displays the software that provides the ifconfig and installs in the container, “yum whatprovides <package>” helps in knowing the software that provides the required package or module.
 
-setup webserver in the container
+                              
+                                ** 𝖘𝖊𝖙𝖚𝖕 𝖜𝖊𝖇𝖘𝖊𝖗𝖛𝖊𝖗 𝖎𝖓 𝖙𝖍𝖊 𝖈𝖔𝖓𝖙𝖆𝖎𝖓𝖊𝖗 **
 
-install webserver → yum install httpd
-deploy web pages → cd /var/www/html/
-and create a file in the folder with some data ex:kanna.html , extension must be “.html”
 
-3. start webserver → /usr/sbin/httpd
+install webserver → 𝐲𝐮𝐦 𝐢𝐧𝐬𝐭𝐚𝐥𝐥 𝐡𝐭𝐭𝐩𝐝
+deploy web pages → 𝐜𝐝 /𝐯𝐚𝐫/𝐰𝐰𝐰/𝐡𝐭𝐦𝐥/
+and create a file in the folder with some data ex:𝐤𝐚𝐧𝐧𝐚.𝐡𝐭𝐦𝐥, extension must be “.html”
+
+3. start webserver →/𝐮𝐬𝐫/𝐬𝐛𝐢𝐧/𝐡𝐭𝐭𝐩𝐝
 
 to make the server permanent as systemctl enable here use command
 
-vi /root/.bashrc/ and in any line of the document add /usr/sbin/httpd
+𝐯𝐢 /𝐫𝐨𝐨𝐭/.𝐛𝐚𝐬𝐡𝐫𝐜/  and in any line of the document add /𝐮𝐬𝐫/𝐬𝐛𝐢𝐧/𝐡𝐭𝐭𝐩𝐝
 
 Now find the ip address of container using ifconfig and use the syntax of
 
-<ip>:<file> to access to the file using browser ex: 192.168.1.0:kanna.html
+<𝐢𝐩>:<𝐟𝐢𝐥𝐞> to access to the file using browser ex: 𝟏𝟗𝟐.𝟏𝟔𝟖.𝟏.𝟎:𝐤𝐚𝐧𝐧𝐚.𝐡𝐭𝐦𝐥
 
 Note: the system should be in connection to the server physically to access.
 
-Mounting
+                      𝐌𝐨𝐮𝐧𝐭𝐢𝐧𝐠
 
 The files we create in the container will be lost when we terminate the container
 
-to overcome such problem we use a concept called mount (-v) in which we create a folder in the base system (Linux) with required files in it and mount this folder to the container while launching this way we can mount to multiple containers rather than creating same data each time for every container we launch
+to overcome such problem we use a concept called mount (-𝐯) in which we create a folder in the base system (Linux) with required files in it and mount this folder to the container while launching this way we can mount to multiple containers rather than creating same data each time for every container we launch
 
-docker run -it — name os1 -v /mydata:/data centos:latest
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐫𝐮𝐧 -𝐢𝐭 — 𝐧𝐚𝐦𝐞 𝐨𝐬𝟏 -𝐯 /𝐦𝐲𝐝𝐚𝐭𝐚:/𝐝𝐚𝐭𝐚 𝐜𝐞𝐧𝐭𝐨𝐬:𝐥𝐚𝐭𝐞𝐬𝐭
 
 in above command os1- the name of the container, /mydata/ — folder created in the base system , /data/ — destination folder where the data mounted in centos
 
-Creating own custom image
+𝐂𝐫𝐞𝐚𝐭𝐢𝐧𝐠 𝐨𝐰𝐧 𝐜𝐮𝐬𝐭𝐨𝐦 𝐢𝐦𝐚𝐠𝐞
 
 There are two methods for creating the custom image
 
-1.  commit
-2.  Dockerfile
+➤  𝐜𝐨𝐦𝐦𝐢𝐭
+➤  𝐃𝐨𝐜𝐤𝐞𝐫𝐟𝐢𝐥𝐞
 
 
-creating an image using commit
+                        ★ ★ 𝐜𝐫𝐞𝐚𝐭𝐢𝐧𝐠 𝐚𝐧 𝐢𝐦𝐚𝐠𝐞 𝐮𝐬𝐢𝐧𝐠 𝐜𝐨𝐦𝐦𝐢𝐭 ★ ★
 
-docker run -it — name os2 centos: latest
 
-yum install net-tools
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐫𝐮𝐧 -𝐢𝐭 — 𝐧𝐚𝐦𝐞 𝐨𝐬𝟐 𝐜𝐞𝐧𝐭𝐨𝐬: 𝐥𝐚𝐭𝐞𝐬𝐭
 
-yum install httpd
+𝐲𝐮𝐦 𝐢𝐧𝐬𝐭𝐚𝐥𝐥 𝐧𝐞𝐭-𝐭𝐨𝐨𝐥𝐬
+
+𝐲𝐮𝐦 𝐢𝐧𝐬𝐭𝐚𝐥𝐥 𝐡𝐭𝐭𝐩𝐝
 
 like the above format install all the packages needed and make all the changes accordingly in the container and then
 
-docker commit os2 myimage:v1
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐜𝐨𝐦𝐦𝐢𝐭 𝐨𝐬𝟐 𝐦𝐲𝐢𝐦𝐚𝐠𝐞:𝐯𝟏
 
 In the commited container myimage:v1 we have all the changes we made and for further usage we can launch this container instead launching the new and further installing all required since we loss all the data in it when we terminate OS
 
 we can also share this image to collegues to develop the code in team . we can share through mail,drive and also the best way is to upload in the dockerhub but we can only share the file with the extension of (.tar) to convert
 
-docker save myimage:v1 -o (userid of docker hub)/myimage.tar
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐬𝐚𝐯𝐞 𝐦𝐲𝐢𝐦𝐚𝐠𝐞:𝐯𝟏 -𝐨 (𝐮𝐬𝐞𝐫𝐢𝐝 𝐨𝐟 𝐝𝐨𝐜𝐤𝐞𝐫 𝐡𝐮𝐛)/𝐦𝐲𝐢𝐦𝐚𝐠𝐞.𝐭𝐚𝐫
 
 ex: docker save myimage:v1 -o kanna12/myimage.tar
 
 to change the file name as required 
 
-docker tag  <target name>   <desired name> 
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐭𝐚𝐠  <𝐭𝐚𝐫𝐠𝐞𝐭 𝐧𝐚𝐦𝐞>   <𝐝𝐞𝐬𝐢𝐫𝐞𝐝 𝐧𝐚𝐦𝐞>
 
 initially log in to docker to upload file into docker hub
 
-docker login
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐥𝐨𝐠𝐢𝐧
 
-docker push kanna12/myimage.tar
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐩𝐮𝐬𝐡 𝐤𝐚𝐧𝐧𝐚𝟏𝟐/𝐦𝐲𝐢𝐦𝐚𝐠𝐞.𝐭𝐚𝐫
 
 To use this image or any other image from docker hub use pull command to download and then run the container
 
-creating an image using Docker file
+                                  
+                                ★ ★ 𝐜𝐫𝐞𝐚𝐭𝐢𝐧𝐠 𝐚𝐧 𝐢𝐦𝐚𝐠𝐞 𝐮𝐬𝐢𝐧𝐠 𝐃𝐨𝐜𝐤𝐞𝐫𝐟𝐢𝐥𝐞 ★ ★
 
 create a folder ex : /mydocker
 
-cd /mydocker
+𝐜𝐝 /𝐦𝐲𝐝𝐨𝐜𝐤𝐞𝐫
 
-vim Dockerfile
+𝐯𝐢𝐦 𝐃𝐨𝐜𝐤𝐞𝐫𝐟𝐢𝐥𝐞
 
 Inside the dockerfile write all the required commands and code
 
 ex :
 
-FROM centos
+𝐅𝐑𝐎𝐌 centos
 
-RUN yum install net-tools -y
+𝐑𝐔𝐍 yum install net-tools -y
 
-RUN yum install httpd
+𝐑𝐔𝐍 yum install httpd
 
-WORKDIR /var/www/html/
+𝐖𝐎𝐑𝐊𝐃𝐈𝐑 /var/www/html/
 
-RUN /usr/sbin/httpd
+𝐑𝐔𝐍 /usr/sbin/httpd
 
-RUN echo welcome > kanna.html
+𝐑𝐔𝐍 echo welcome > kanna.html
+
+
 
 After creating the Dockerfile then from the same folder in which the Dockerfile is created using the following command to build
 
-docker build /mydocker -t myweb:v1
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐛𝐮𝐢𝐥𝐝 /𝐦𝐲𝐝𝐨𝐜𝐤𝐞𝐫 -𝐭 𝐦𝐲𝐰𝐞𝐛:𝐯𝟏
 
-docker run -it --name B1  myweb:v1
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐫𝐮𝐧 -𝐢𝐭 --𝐧𝐚𝐦𝐞 𝐁𝟏  𝐦𝐲𝐰𝐞𝐛:𝐯𝟏
 
 hence the container is launched with all the requirements using the Dockerfile
 
 Keyword in Dockerfile
 
-FROM: It is used to define the base image, on which we will be building.
-ADD: It is used to add files to the container being built. In simple terms, RUN is used to run commands and commits the result
-RUN: It is used to add layers to the base image, by installing components.
-CMD: It is used to run commands at the start of the container. These commands run only when there is no argument specified while running the container.
-ENTRYPOINT: It is used to run commands during the container initialization process. You must use an ENTRYPOINT in your dockefile if you want to start a container automatically after building an image.
-ENV: It is used to define environment variables in the container run-time.
-EXPOSE: It is used to specify the listening port to enable networking at run time.
-MAINTAINER: It is used to specify the name and email id of the image creator.
-USER: It is used to specify the username used to run the container.
-VOLUME: It is used to allow access from the container to the directory on the Docker host.
-WORKDIR: It is used to specify the path of the command to be executed at run time.
-LABEL: It is used to add labels to the docker image.
+𝐅𝐑𝐎𝐌 ➥  It is used to define the base image, on which we will be building.
+𝐀𝐃𝐃  ➥ It is used to add files to the container being built.
+𝐑𝐔𝐍  ➥ It is used to add layers to the base image, by installing components.
+𝐂𝐌𝐃  ➥ It is used to run commands at the start of the container. These commands run only when there is no argument specified while running the container.
+𝐄𝐍𝐓𝐑𝐘𝐏𝐎𝐈𝐍𝐓 ➥  It is used to run commands during the container initialization process. You must use an ENTRYPOINT in your dockefile if you want to start a container automatically after building an image.
+𝐄𝐍𝐕  ➥ It is used to define environment variables in the container run-time.
+𝐄𝐗𝐏𝐎𝐒𝐄  ➥ It is used to specify the listening port to enable networking at run time.
+𝐌𝐀𝐈𝐍𝐓𝐀𝐈𝐍𝐄𝐑 ➥  It is used to specify the name and email id of the image creator.
+𝐔𝐒𝐄𝐑 ➥  It is used to specify the username used to run the container.
+𝐕𝐎𝐋𝐔𝐌𝐄 ➥  It is used to allow access from the container to the directory on the Docker host.
+𝐖𝐎𝐑𝐊𝐃𝐈𝐑  ➥ It is used to specify the path of the command to be executed at run time.
+𝐋𝐀𝐁𝐄𝐋 ➥  It is used to add labels to the docker image.
 Creating a container gives the output of python file using Dockerfile
 
-FROM centos
+𝐅𝐑𝐎𝐌 centos
 
-RUN yum install python3 -y
+𝐑𝐔𝐍 yum install python3 -y
 
 create a python file (my.py)in the same folder where dockerfile is created
 
-COPY my.py /my.py
+𝐂𝐎𝐏𝐘 my.py /my.py
 
-ENTRYPOINT [“python3” , “/my.py”]
+𝐄𝐍𝐓𝐑𝐘𝐏𝐎𝐈𝐍𝐓 [“python3” , “/my.py”]
 
-CMD [“Kanna”]
+𝐂𝐌𝐃 [“Kanna”]
 
 To provide the server publicly for the devices which are not in physical connection we use the concept called PATING in which we launch the container with defining a specific port number .
 
-docker run -it — name <name> -p 1234:80 myweb:v1
+𝐝𝐨𝐜𝐤𝐞𝐫 𝐫𝐮𝐧 -𝐢𝐭 — 𝐧𝐚𝐦𝐞 <𝐧𝐚𝐦𝐞> -𝐩 𝟏𝟐𝟑𝟒:𝟖𝟎 𝐦𝐲𝐰𝐞𝐛:𝐯𝟏
 
 in above command 1234 is the port number we define randomly and the 80 is the port to which the server is connected, to access this server we use the format
 
-<ip> :<port number>/file
+<𝐢𝐩> :<𝐩𝐨𝐫𝐭 𝐧𝐮𝐦𝐛𝐞𝐫>/𝐟𝐢𝐥𝐞
 
 ex 192.168.2.4:1234/kanna.html
 
-‘ ’ Its Enough To Rock But Research More to Crack ’ ’
+
