@@ -1,0 +1,72 @@
+
+
+
+docker stats  -a   -->   TO see all live statistics of the container
+
+docker inspect  < Con name >    --->  for all the details and metadata of the container
+
+\   ---> used in linux for partitioning the command into multiple parts
+
+      ex:  docker run -it --name mysql  -e MYSQL_ROOT_PASSWORD=redhat  -e   \
+            >>   MYSQL_PASSWORD=password  -e MYSQL_USER=kanna  -e \
+            >>   MYSQL_DB_NAME=mysql   mysql
+
+docker ps -a -qcommand is used to print all the IDs of the containers
+docker rm -f  $(docker ps -a -q ) 
+
+Launch mysql and wordpress containers. integrate wordpress with the mysql database . create a blog and publish check the published data we can access to data. 
+    delete mysql container and relaunch and integrate with wordpress  and recheck we cannot access the data.
+
+Launch mysql with mount /mydata to /var/lib/mysql   and wordpress. create blog and publish. check the published data. 
+    relaunch the mysql container with same mount and check their will not be any effect to published data since the IP is same as initial container.
+
+But when the IP changes after the relaunch we loose the connectivity of wordpress to database. To overcome such issue of dynamic IP which results in loss of connectivity.
+    we link the containers
+
+
+if OS1 and OS2 are two containers. By default the both containers can ping to each other through IP since on the same network . 
+    But the IP changes after every restart so we need to update the IP everytime to ping to the container. So, instead pinging with IP which is dynamic we use OS name
+    to ping. for such flexibility  Launch the OS1  and while launching OS2 use the parameter --link as follows 
+
+docker  run -it  OS2 --link OS1  centos
+
+in this scenerio  we can ping to OS1 from OS2 using the name but cannot ping to OS2 from OS1  using the name 
+
+apply the same concept to mysql and wordpress and use the OS name instead IP while integrating mysql to wordpress and recreate mysql and check. 
+      it doesnot works since the wordpress uses IP behind and it cannot reconnect when the IP changed.
+
+
+so     --link       is not the better approach to integrate multiple containers    
+
+instead we create a custom network  and launch the containers in the network so they have connectivity since they are in the same network even if the IP varies.
+
+
+docker network ls
+
+docker network inspect bridge
+
+when a container launched in same bridge network it will have the connectivity to thw containers in the bridge
+
+Every container can connect to internet since the docker provides us the router
+
+
+
+docker network create  --driver  < driver name > ( bridge )    < network name > ( new network )     --subnet  10.0.1.0/24
+
+
+=> all the wifi routers acts  as  switch  , DHCP  , router
+
+Every router is pre setup with DHCP which assign the IP address to the consumer  within the range it is configured.
+
+For every network in docker will have a subnet configured so that every container we launch in it will be assigned with the IP in the range of subnet.
+
+eth0  is the main interface in linux . if this interface  is able to communicate with internet only then the containers in that OS will reach to internet.
+      and we can ping to the containers from the base OS since it acts as router.
+
+
+docker run -it --name OS3  --network new-nw  centos
+
+container in one network will not connect to the container in another network by default 
+
+Launch  wordpress and mysql with mount /mydata : /var/lib/mysql   in same network and integrate with the name and publish data and relaunch mysql .doesnot impacts data.
+
